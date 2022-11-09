@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Damas</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    
+</head>
+<body>
+    <div class="lona_transparente"></div>
+    <header class="header">
+        <section class="header-title">
+            <h3 class="header-title__title">DAMAS</h3>
+            <nav class="header-title__nav">
+                <ul class="header-title__list">
+                    <li class="header-title__item"><a href="{% url 'home:home' %}">Jugar</a></li>
+                    <li class="header-title__item"><a href="{% url 'home:torneos:torneos' %}">Torneos</a></li>
+                </ul>
+            </nav>
+        </section>
+        <section class="header-opciones">
+            <ul class="header-opciones__list">
+                
+                    <li class="header-opciones__item {% if request.session.login %}oculto{% else %} visible{% endif %}"> <a href="{% url 'home:login:login' %}">Iniciar Sesion </a> </li>     
+                    <li class="header-opciones__item header-title__item"> <a id="nombre_usuario">{{request.session.name}}
+                        <ul class="menu" id="menu_perfil">
+                            <form action="" method="post">
+                                <input type="text" name="nombre" id="menu_perfil_nombre">
+                            </form>
+                        </ul>
+                    </a></li>
+                    <li class="header-opciones__item {% if not request.session.login %}oculto{% else %}visible{% endif %}"> 
+                        <i id="button-perfil" class="fa fa-user button-perfil">
+                            <ul id="menu" class="menu">
+                                <li  id="configuracion">Configuracion</li>
+                                <li id="cerrar_sesion">Cerrar Sesion</li>
+                            </ul>
+                        </i>
+                    </li>         
+            </ul>
+        </section>
+    </header>
+    {% block content %}
+
+    {% endblock %}
+    
+    <script>
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = getCookie('csrftoken');
+        const urlServer = "http://127.0.0.1:8000/"
+
+
+        const lona_transparente = document.querySelector(".lona_transparente")
+        const botton_perfil = document.querySelector("#button-perfil")
+        const cerrar_sesion = document.querySelector('#cerrar_sesion')
+        const configuracion = document.querySelector('#configuracion')
+        const menu          = document.querySelector("#menu")
+        const menu_perfil   = document.querySelector('#menu_perfil')
+        const perfil        = document.querySelector('#nombre_usuario')
+        const menu_perfil_nombre = document.querySelector('#menu_perfil_nombre')
+
+        
+
+        botton_perfil.addEventListener( "mouseover", ()=>{
+            menu.classList.add("desplegar-menu")
+        })
+
+        botton_perfil.addEventListener( "mouseout", ()=>{
+            menu.classList.remove("desplegar-menu")
+        })
+        
+
+        cerrar_sesion.addEventListener('click',async ()=>{
+            const request = new Request(
+                urlServer,
+                {
+                method: 'POST',
+                body: JSON.stringify( {accion: "cerrar_sesion"} ),
+                headers: {'X-CSRFToken': csrftoken},
+                mode: 'same-origin' // Do not send CSRF token to another domain.
+                }
+            );
+            const resp = await fetch(request)
+            location.reload()
+        })
+
+        configuracion.addEventListener('click',()=>{
+            // falta por definir
+        })
+
+        perfil.addEventListener('click', async ()=>{
+            const request = new Request(
+                urlServer,
+                {
+                method: 'POST',
+                body: JSON.stringify( {accion: "perfil"} ),
+                headers: {'X-CSRFToken': csrftoken},
+                mode: 'same-origin' // Do not send CSRF token to another domain.
+                }
+            );
+
+            const resp = await fetch(request)
+            const respuesta = await resp.json()
+
+            perfil.addEventListener( "mouseover", ()=>{
+                menu_perfil.classList.add("desplegar-menu")
+            })
+            
+            menu_perfil.classList.add("desplegar-menu")
+        })
+        
+        perfil.addEventListener( "mouseout", ()=>{
+            menu_perfil.classList.remove("desplegar-menu")
+        })
+
+        menu_perfil_nombre.addEventListener('focus', ()=>{
+            lona_transparente.style.display = "block"
+        })
+        
+        lona_transparente.addEventListener('click', ()=>{
+            lona_transparente.style.display = "none"
+        })
+
+
+    </script>
+</body>
+</html>

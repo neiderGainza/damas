@@ -1,0 +1,37 @@
+{% extends "home/base.html" %}
+
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">    
+
+
+    <main class="main">
+        <section class="main_jugar">
+            <ul class="main_jugar-opciones-tiempo">
+                <li>1 minuto </li>
+                <li>3 minutos</li>
+            </ul>
+            <button>Jugar online contra un amigo</button>
+            <button>Jugar offline contra un amigo</button>
+            <button>Jugar contra el ordenador</button>
+        </section>
+
+        <section class="main_jugadores">
+            <form  method="" class="main_jugadores-search" id="main_jugadores-search">
+                {% csrf_token %}
+                <input type="text" placeholder="Buscar" id="buscar">
+                <i class="fa fa-home" style="display: none;" id="cancelar_buscar"></i>
+            </form>
+            <ul class="main_jugadores-list" id="lista_jugadores">
+                <li style="background-color: gray;">
+                    <span>Nombre</span>
+                    <span>Seguir</span>
+                </li>
+            </ul>
+        </section>
+
+        <section class="main_encuestas"></section>
+
+    </main>
+    <script src="{% static 'js/home.js' %}"></script>
+{% endblock %}

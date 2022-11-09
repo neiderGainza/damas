@@ -1,0 +1,134 @@
+.main{
+    display: grid;
+    width: 100%;
+    grid-gap: 1em;
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas: "jugar lista"
+                         "blog  lista";
+}
+ul{
+    list-style-type: none;
+}
+
+.main_jugar{
+    grid-area: "jugar";
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+
+    align-items: center;
+    margin-bottom: 2em;
+}
+.main_jugar-opciones-tiempo{
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+}
+.main_jugar-opciones-tiempo li{
+    width: 49%;
+
+    padding: 1em;
+    background-color: rgb(155, 159, 163);
+    margin: 0.1em;
+    text-align: center;
+}
+.main_jugar button{
+    margin: 0.1em;
+    padding: 0.5em;
+    width: 98%;
+}
+
+
+.main_jugadores{
+    grid-area: "lista";
+}
+
+.main_jugadores-search{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    align-items: center;
+    background-color: rgb(155, 159, 163);
+    padding: 0.3em;
+    margin-top: 0.1em;
+}
+.main_jugadores-search button{
+    padding: 0.2em;
+    font-size: 12px;
+    cursor: pointer;
+    background-color: rgb(155, 159, 163);
+    border: none;
+}
+
+#buscar{
+    flex-wrap: 1;
+    height: 1.5em;
+    border: none;
+}
+
+
+.main_jugadores-list li{
+    padding: 0.2em 0.4em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main_jugadores-item-toggle{
+    position: relative;
+    display: inline-block;
+
+    width: 2.4em;
+    height: 1.2em;
+}
+
+.main_jugadores-item-toggle input{
+    width: 0;
+    height: 0;
+}
+
+.main_jugadores-item-toggle span{
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: blue;
+    border-radius: 1em;
+}
+
+.main_jugadores-item-toggle span:before{
+    position: absolute;
+    content: "";
+    height: 86%;
+    width: 43%;
+
+    left: 7%;
+    top: 7%;
+    border-radius: 50%;
+    background-color: red;
+    transition: .4s;
+}
+
+.main_jugadores-item-toggle input:checked + span::before{
+    transform: translateX(103%);
+}
+
+
+.main_encuestas{
+    grid-area: "blog";
+}
+
+
+
+
+@media (max-width: 40rem){
+    .main{
+        display: block;
+    }
+}

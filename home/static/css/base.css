@@ -1,0 +1,166 @@
+*{
+    margin: 0px;
+    padding: 0px;
+
+    box-sizing: border-box;
+}
+body{
+    margin: 1em;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.header{
+    z-index: 1000;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+
+    align-items: center;
+    
+}
+
+.header-title{
+    display: flex;
+    justify-content: right;
+}
+
+.header-title__title{
+    color: black;
+    display: inline-block;
+    margin-right: 1.4em;
+}
+
+.header-title__list{
+    list-style-type: none;
+}
+
+.header-title__item{
+    display: inline-block;
+    margin-left: 0.5em;
+}
+
+.header-title__item a{
+    text-decoration: none;
+    position: relative;
+}
+
+
+.header-opciones__list{
+    list-style-type: none;
+    
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.header-opciones__item{
+    /* display: inline-block; */
+    margin-left: 0.5em;
+    cursor: pointer;
+}
+
+.header-opciones__item:first-child a{
+    text-decoration: none;
+}
+
+
+.button-configuracion{
+    font-size: 1.5em;
+}
+
+.button-perfil{
+    font-size: 1.5em;
+    position: relative;
+    padding: 0.2em;
+}
+
+.button-perfil:hover{
+    background-color: rgb(155, 159, 163);
+}
+
+.menu{
+    position: absolute;
+    right: 0;
+
+    font-size: 0.7em;
+    list-style-type: none;
+    background-color: rgb(155, 159, 163);
+   
+    padding: 0px 0.5em;
+    height: 0%;
+    overflow: hidden;
+}
+
+.desplegar-menu{
+    padding: 0.5em;
+    height: auto;
+}
+
+.menu li{
+    padding: 0.3em;
+    cursor: pointer;
+}
+
+.menu li:hover{
+    background-color: white;
+}
+
+
+.oculto {
+    display: none;
+}
+
+#nombre_usuario{
+    padding: 0.2em;
+}
+
+#nombre_usuario:hover{
+    background-color: rgb(155, 159, 163);
+}
+
+
+
+
+
+
+
+.lona_transparente{
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    width: 100vw;
+    height: 100vh;
+
+    z-index: 500;
+    background-color: red;
+    opacity: 20%;
+    display: none;
+}
+
+#nombre_usuario{
+    z-index: 501;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

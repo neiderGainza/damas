@@ -1,0 +1,32 @@
+{% extends "home/base.html" %}
+
+{% block content %}
+    <main class="main">
+        <form action="" method="post" class="search">
+            {% csrf_token %}
+            <input type="search" name="search">
+            <i class="fa fa-search"></i>
+        </form>
+    
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/jugadores.css' %}">
+        <ul class="jugadores_list">
+            {% for i in lista_jugadores %}
+                <li class="jugadores_item">
+                    <span>{{i.name}}</span>
+                </li>
+            {% endfor %}
+        </ul>
+
+        
+    </main>
+    <script>
+
+        const buscar = document.querySelector(".search input")
+        buscar.addEventListener("click", ()=>{
+            fetch("http://127.0.0.1:8000/jugadores/").then(resp => {
+                console.log(resp)
+            })
+        })
+    </script>
+{% endblock %}
