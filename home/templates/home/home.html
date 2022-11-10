@@ -17,7 +17,7 @@
         </section>
 
         <section class="main_jugadores">
-            <form  method="" class="main_jugadores-search" id="main_jugadores-search">
+            <form class="main_jugadores-search" id="main_jugadores-search">
                 {% csrf_token %}
                 <input type="text" placeholder="Buscar" id="buscar">
                 <i class="fa fa-home" style="display: none;" id="cancelar_buscar"></i>
@@ -28,6 +28,10 @@
                     <span>Seguir</span>
                 </li>
             </ul>
+            <nav class="main_jugadores-siguientes-list">
+                <span>Anteiores</span>
+                <span>Siguientes</span>
+            </nav>
         </section>
 
         <section class="main_encuestas"></section>

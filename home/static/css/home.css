@@ -123,6 +123,19 @@ ul{
     background-color: rgb(18, 234, 18);
 }
 
+.main_jugadores-siguientes-list{
+    display: flex;
+    justify-content: center;
+    background-color: gray;
+}
+.main_jugadores-siguientes-list span{
+    padding: 0.2em 0.4em;
+}
+
+
+
+
+
 
 .main_encuestas{
     grid-area: "blog";
