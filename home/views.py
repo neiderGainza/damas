@@ -20,8 +20,7 @@ def home(request):
             return JsonResponse( {
                 "name":usuario.name,
                 "description":usuario.description,
-                "elo_bala":usuario.elo_bala,
-                "elo_rapido":usuario.elo_rapido,
+                "elo":usuario.elo,
                 "partidas_jugadas":usuario.partidas_jugadas,
             } )
 

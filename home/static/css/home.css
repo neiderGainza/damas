@@ -98,25 +98,29 @@ ul{
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: blue;
+    background-color: rgba(46, 46, 118, 0.792);
     border-radius: 1em;
 }
 
 .main_jugadores-item-toggle span:before{
     position: absolute;
     content: "";
-    height: 86%;
-    width: 43%;
+    height: 100%;
+    width: 51%;
 
-    left: 7%;
-    top: 7%;
+    left: -1%;
+    top: 0%;
     border-radius: 50%;
-    background-color: red;
+    background-color: rgb(45, 42, 42);
     transition: .4s;
 }
 
 .main_jugadores-item-toggle input:checked + span::before{
     transform: translateX(103%);
+}
+
+.main_jugadores-item-toggle input:checked + span{
+    background-color: rgb(18, 234, 18);
 }
 
 
@@ -127,7 +131,7 @@ ul{
 
 
 
-@media (max-width: 40rem){
+@media (max-width: 37rem){
     .main{
         display: block;
     }

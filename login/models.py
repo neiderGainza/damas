@@ -7,14 +7,13 @@ class User(models.Model):
     email    = models.EmailField()
     password = models.CharField(max_length = 20) 
     
-    followers = models.ManyToManyField("self", blank = True, default = []) 
+    followers = models.ManyToManyField("self", blank = True, default = [], symmetrical=False) 
 
     date = models.DateField(auto_now=False, auto_now_add=True) # fecha de incripcion
     description = models.CharField(max_length = 1000, blank = True, default = "Me gusta jugar damas!!!")
 
     partidas_jugadas = models.IntegerField(blank = True, default = 0) 
-    elo_bala     = models.IntegerField(blank = True, default = 1500) 
-    elo_rapido   = models.IntegerField(blank = True, default = 1500)
+    elo     = models.IntegerField(blank = True, default = 1500) 
     
     def __str__(self):
         return self.name
