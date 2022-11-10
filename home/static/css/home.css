@@ -123,6 +123,14 @@ ul{
     background-color: rgb(18, 234, 18);
 }
 
+.boton_online{
+    width: 0.6em;
+    height: 0.6em;
+    border-radius: 50%;
+    margin-right: 0.6em;
+    border: 1px solid black;
+}
+
 .main_jugadores-siguientes-list{
     display: flex;
     justify-content: center;

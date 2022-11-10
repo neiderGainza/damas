@@ -28,6 +28,7 @@ const crear_cabecera = ()=>{
     let span_cabecera = document.createElement('span')
     let span_cabecera1 = document.createElement('span')
    
+    span_cabecera.style.marginLeft = "1em";
     span_cabecera.innerText = 'Nombre';
     span_cabecera1.innerText = 'Seguir';
    
@@ -40,12 +41,14 @@ const crear_cabecera = ()=>{
 }
 
 
-const crear_jugador = (name,val) =>{
-    let lic     = document.createElement('li')
-    let nombrec = document.createElement('span')
-    let spanc   = document.createElement('span')
-    let togglec = document.createElement('form')
-    let inputc  = document.createElement('input')
+
+const crear_jugador = (name,val,connected) =>{
+    let div_onlinec= document.createElement('div') 
+    let lic       = document.createElement('li')
+    let nombrec   = document.createElement('span')
+    let spanc     = document.createElement('span')
+    let togglec   = document.createElement('form')
+    let inputc    = document.createElement('input')
 
     togglec.classList.add("main_jugadores-item-toggle")
     togglec.action = "#"
@@ -53,11 +56,18 @@ const crear_jugador = (name,val) =>{
     inputc.type = "checkbox";
     if (val){ inputc.click() }
 
+
     togglec.appendChild(inputc)
     togglec.appendChild(spanc)
 
 
     nombrec.innerText = name
+    nombrec.style.width = "100%"
+    div_onlinec.classList.add("boton_online")
+    
+    div_onlinec.style.backgroundColor = connected? "rgb(18, 234, 18)":"rgba(46, 46, 118, 0.792)";
+
+    lic.appendChild(div_onlinec)
     lic.appendChild(nombrec)
     lic.appendChild(togglec)
 
@@ -105,7 +115,7 @@ rellenarLista = async (ini,fin)=>{
     
     let cont = 0;
     respuesta1.lista_jugadores.forEach(element => {
-        let nuevo = crear_jugador(element[0],element[2])
+        let nuevo = crear_jugador(element[0],element[2],element[3])
         if (cont%2) nuevo.style.backgroundColor = "rgb(155, 159, 163)";
         cont+=1
 
@@ -149,7 +159,7 @@ formulario.addEventListener('submit', async (evento)=>{
         console.log("ok")
         lista_jugadores.innerHTML = ''
         lista_jugadores.appendChild(crear_cabecera())
-        lista_jugadores.appendChild(crear_jugador(respuesta['user'][0], respuesta['user'][2]))  
+        lista_jugadores.appendChild(crear_jugador(respuesta['user'][0], respuesta['user'][2], respuesta['user'][3]))  
     }else{
         lista_jugadores.innerHTML = ''
     }

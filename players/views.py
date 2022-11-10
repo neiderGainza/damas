@@ -10,6 +10,7 @@ def esta(obj:login_model.User, usuario_actual:login_model.User)->bool:
         return True
     return False
 
+
 def jugadores(request):
 
     usuario_actual = ""
@@ -24,13 +25,13 @@ def jugadores(request):
     if request.method == "POST":
         datos = json.load(request)
         if datos['accion'] == "rellenarLista":
-            arr = [[i.name,i.elo, esta(i,usuario_actual)] for i in login_model.User.objects.all()[:10]]
+            arr = [[i.name,i.elo, esta(i,usuario_actual), i.online] for i in login_model.User.objects.all()[:10]]
             return JsonResponse({"lista_jugadores": arr,})
         
         if datos['accion'] == "search":
             try:
                 user = login_model.User.objects.get(name = datos['cadena'])
-                return JsonResponse({"error":False, "user": [user.name, user.elo,True]})
+                return JsonResponse({"error":False, "user": [user.name, user.elo,esta(user,usuario_actual), user.online]})
             except:
                 return JsonResponse({"error":True})
         

@@ -15,6 +15,8 @@ class User(models.Model):
     partidas_jugadas = models.IntegerField(blank = True, default = 0) 
     elo     = models.IntegerField(blank = True, default = 1500) 
     
+    online  = models.BooleanField(default=False, blank=True)
+
     def __str__(self):
         return self.name
         

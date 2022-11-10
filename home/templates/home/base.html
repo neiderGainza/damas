@@ -49,6 +49,20 @@
 
     {% endblock %}
     
+
+    <script>
+        const onlineSocket = new WebSocket(
+            'ws://'
+            + window.location.host
+            + '/'
+        );
+
+        onlineSocket.onopen = function(e){
+            onlineSocket.send( JSON.stringify({ userName: "{{ request.session.name }}", value: true}) )
+        }
+
+        onlineSocket.onclose = function(e){}
+    </script>
     <script>
         function getCookie(name) {
             let cookieValue = null;
